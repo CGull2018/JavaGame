@@ -18,6 +18,7 @@ public class Game extends Canvas implements Runnable {
 	private Player player;
 	private BasicEnemy basicEnemy;
 	private HUD hud;
+	private Spawner spawner;
 	private World world;
 	private PlayerMenu playerMenu;
 
@@ -36,6 +37,7 @@ public class Game extends Canvas implements Runnable {
 		menu = new Menu(this, handler, hud);
 		playerMenu = new PlayerMenu(this, handler);
 		world = new World(this, handler, hud);
+		spawner = new Spawner(handler, this, hud);
 
 		
 		this.addKeyListener(new KeyInput(handler));
@@ -111,6 +113,7 @@ public class Game extends Canvas implements Runnable {
 			
 		case World:
 			world.tick();
+			spawner.tick();
 
 			break;
 		
