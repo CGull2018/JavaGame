@@ -8,15 +8,17 @@ public class Player extends GameObject {
 	Game game;
 	Random r = new Random();
 	Handler handler;
+	HUD hud;
 
 	// Player Variable
 
 	public int speed = 5;
 
-	public Player(int x, int y, ID id, Handler handler, Game game) {
+	public Player(int x, int y, ID id, Handler handler, Game game, HUD hud) {
 		super(x, y, id);
 		this.handler = handler;
 		this.game = game;
+		this.hud = hud;
 
 	}
 
@@ -26,11 +28,11 @@ public class Player extends GameObject {
 
 	public void tick() {
 
-		if(HUD.HEALTH <=0) {
+		if (HUD.HEALTH <= 0) {
 			handler.removeObject(this);
 			game.gameState = Game.STATE.PlayerMenu;
 		}
-		
+
 		if (handler.isPause() == true) {
 			game.gameState = Game.STATE.PlayerMenu;
 
@@ -38,7 +40,7 @@ public class Player extends GameObject {
 		if (game.gameState == Game.STATE.PlayerMenu) {
 			if (handler.isResume() == true) {
 				game.gameState = Game.STATE.World;
-				
+
 			}
 		}
 
@@ -85,17 +87,24 @@ public class Player extends GameObject {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 
+			// collision with basic enemy
 			if (tempObject.getId() == ID.BasicEnemy) {
 				if (getBounds().intersects(tempObject.getBounds())) {
-				HUD.HEALTH -= 2;
-				velX += r.nextInt(speed);
-				velY += r.nextInt(speed);
+					HUD.HEALTH -= 2;
+					velX += r.nextInt(speed);
+					velY += r.nextInt(speed);
 
 				}
 			}
 
+			//pickup basic ammo
+			if (tempObject.getId() == ID.BasicAmmo) {
+				if (getBounds().intersects(tempObject.getBounds())) {
+					hud.basicAmmo += r.nextInt(10);
+					handler.removeObject(tempObject);
+				}
+			}
 		}
-
 	}
 
 	public void render(Graphics g) {

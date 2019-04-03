@@ -5,11 +5,12 @@ import java.awt.Rectangle;
 public class Bullet extends GameObject {
 
 	private Handler handler;
-	private BasicEnemy basicEnemy;
+
 
 	public Bullet(float x, float y, ID id, Handler handler, int mx, int my) {
 		super(x, y, id);
 		this.handler = handler;
+
 
 		velX = (mx - x) / 10;
 		velY = (my - y) / 10;
@@ -30,7 +31,8 @@ public class Bullet extends GameObject {
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ID.BasicEnemy) {
 				if (getBounds().intersects(tempObject.getBounds())) {
-					handler.object.remove(this);
+
+
 				}
 			}
 		}

@@ -20,7 +20,7 @@ public class Game extends Canvas implements Runnable {
 	private HUD hud;
 	private World world;
 	private PlayerMenu playerMenu;
-	private Bullet bullet;
+
 
 	// GameState
 	public enum STATE {
@@ -33,13 +33,13 @@ public class Game extends Canvas implements Runnable {
 	public Game() {
 		handler = new Handler();
 		hud = new HUD();
-		menu = new Menu(this, handler);
+		menu = new Menu(this, handler, hud);
 		playerMenu = new PlayerMenu(this, handler);
 		world = new World(this, handler, hud);
 
 		
 		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new MouseInput(handler));
+		this.addMouseListener(new MouseInput(handler, hud));
 
 		new Window(WIDTH, HEIGHT, "JavaGame RPG", this);
 		

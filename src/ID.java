@@ -2,8 +2,9 @@
 public enum ID {
     Player,
     Bullet,
-    EnemyRange,
-    EnemyTerritory,
+    BasicAmmo,
+
+
     BasicEnemy,
     fastEnemy,
     smartEnemy,

@@ -12,14 +12,15 @@ import java.util.Random;
  */
 public class Menu extends MouseAdapter {
 	private Game game;
-
+private HUD hud;
 	private Handler handler;
 
 	Random r = new Random();
 
-	public Menu(Game game, Handler handler) {
+	public Menu(Game game, Handler handler, HUD hud) {
 		this.game = game;
 		this.handler = handler;
+		this.hud = hud;
 
 	}
 
@@ -33,7 +34,7 @@ public class Menu extends MouseAdapter {
 				game.gameState = Game.STATE.World;
 
 				if(game.gameState == Game.STATE.World) {
-					handler.addObject(new Player(game.WIDTH / 2,game.HEIGHT/2, ID.Player, handler, game));
+					handler.addObject(new Player(game.WIDTH / 2,game.HEIGHT/2, ID.Player, handler, game, hud));
 					handler.addObject(new BasicEnemy(r.nextInt(game.WIDTH/4), r.nextInt(game.HEIGHT / 2), ID.BasicEnemy, handler, game));
 
 					}

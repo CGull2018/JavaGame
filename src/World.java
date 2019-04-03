@@ -49,7 +49,7 @@ public class World extends MouseAdapter {
 	}
 
 	public void tick() {
-		System.out.println("World State");
+
 		hud.tick();
 	}
 

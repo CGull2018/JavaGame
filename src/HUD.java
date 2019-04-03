@@ -8,6 +8,8 @@ public class HUD {
 	public static float HEALTH = 100;
 	public float greenValue = 255;
 	public float blueValue = 255;
+	
+	public int basicAmmo = 10;
 
 	public static float STAMINA = 110;
 
@@ -32,7 +34,7 @@ public class HUD {
         g.drawRect(400, 350, 200, 75);
         g.drawString("Player: " + ID.Player, 405, 380);
         g.drawString("Player Health: " + HEALTH , 405, 400); 
-        g.drawString("Player Stamina: " + STAMINA , 405, 420);
+        g.drawString("Player Ammo: " + basicAmmo , 405, 420);
         
 
 }}
