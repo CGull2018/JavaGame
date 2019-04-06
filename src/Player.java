@@ -9,6 +9,7 @@ public class Player extends GameObject {
 	Random r = new Random();
 	Handler handler;
 	HUD hud;
+	BasicAmmo basicAmmo;
 
 	// Player Variable
 
@@ -28,6 +29,7 @@ public class Player extends GameObject {
 
 	public void tick() {
 
+		// menu states
 		if (HUD.HEALTH <= 0) {
 			handler.removeObject(this);
 			game.gameState = Game.STATE.PlayerMenu;
@@ -54,7 +56,6 @@ public class Player extends GameObject {
 		if (game.gameState == Game.STATE.World) {
 			if (handler.isUp() == true) {
 				velY = -speed;
-				System.out.println("MoveUp");
 			} else if (!handler.isDown()) {
 				velY = 0;
 			}
@@ -77,6 +78,7 @@ public class Player extends GameObject {
 				velX = 0;
 			}
 		}
+
 		x = Game.clamp((int) x, 0, Game.WIDTH - 37);
 		y = Game.clamp((int) y, 0, Game.HEIGHT - 62);
 
@@ -97,7 +99,7 @@ public class Player extends GameObject {
 				}
 			}
 
-			//pickup basic ammo
+			// pickup basic ammo
 			if (tempObject.getId() == ID.BasicAmmo) {
 				if (getBounds().intersects(tempObject.getBounds())) {
 					hud.basicAmmo += r.nextInt(10);

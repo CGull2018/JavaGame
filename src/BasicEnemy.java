@@ -29,6 +29,7 @@ public class BasicEnemy extends GameObject {
 	Player player;
 	HUD hud;
 
+
 	public enum STATE {
 		Roam, Alert, Chase;
 	}
@@ -40,10 +41,12 @@ public class BasicEnemy extends GameObject {
 		this.handler = handler;
 		this.game = game;
 
+
 		for (int i = 0; i < handler.object.size(); i++) {
 			if (handler.object.get(i).getId() == ID.Player)
 				player = (Player) handler.object.get(i);
 		}
+
 	}
 
 	public Rectangle getBounds() {
@@ -76,8 +79,8 @@ public class BasicEnemy extends GameObject {
 						int choose = r.nextInt(10);
 
 						if (choose == 6) {
-							roamX = r.nextInt(2 - -2) + -2;
-							roamY = r.nextInt(2 - -2) + -2;
+							roamX = r.nextInt(4 - -4) + -2;
+							roamY = r.nextInt(4 - -4) + -2;
 						}
 						x += roamX;
 						y += roamY;
@@ -124,9 +127,9 @@ public class BasicEnemy extends GameObject {
 
 			if (tempObject.getId() == ID.Bullet) {
 				if (getBounds().intersects(tempObject.getBounds())) {
-					enemyHealth -= 50;
+					enemyHealth -= 20;
 					handler.removeObject(tempObject);
-					 handler.addObject(new BasicAmmo((float)this.getX() + r.nextInt(20),(float)this.getY() + r.nextInt(20),ID.BasicAmmo, handler));
+					 handler.addObject(new BasicAmmo((float)this.getX() + r.nextInt(100),(float)this.getY() + r.nextInt(100),ID.BasicAmmo, handler));
 
 				
 

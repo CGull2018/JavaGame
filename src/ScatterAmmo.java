@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-public class BasicAmmo extends GameObject {
+public class ScatterAmmo extends GameObject {
 
 	Random r = new Random();
 	
@@ -11,14 +11,12 @@ public class BasicAmmo extends GameObject {
 	
 	private Handler handler;
 	
-	public int basicDamage = 50;
-	
-	public BasicAmmo(float x, float y, ID id, Handler handler) {
+	public ScatterAmmo(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
 		
 	
-
+		int scatterDamage = 5;
 		
 	}
 
@@ -32,7 +30,7 @@ public class BasicAmmo extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.red);
+		g.setColor(Color.yellow);
 		g.fillRect((int)x,(int) y, 16, 16);
 	}
 

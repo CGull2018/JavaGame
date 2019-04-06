@@ -11,17 +11,17 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;
 
-	//imported objects
+	// imported objects
 	private Handler handler;
 	private Menu menu;
 	private Help help;
 	private Player player;
 	private BasicEnemy basicEnemy;
+	private Bullet bullet;
 	private HUD hud;
 	private Spawner spawner;
 	private World world;
 	private PlayerMenu playerMenu;
-
 
 	// GameState
 	public enum STATE {
@@ -30,21 +30,20 @@ public class Game extends Canvas implements Runnable {
 
 	public STATE gameState = STATE.Menu;
 
+
 	// game spawn
 	public Game() {
 		handler = new Handler();
-		hud = new HUD();
+		hud = new HUD(this, handler);
 		menu = new Menu(this, handler, hud);
 		playerMenu = new PlayerMenu(this, handler);
 		world = new World(this, handler, hud);
 		spawner = new Spawner(handler, this, hud);
 
-		
 		this.addKeyListener(new KeyInput(handler));
 		this.addMouseListener(new MouseInput(handler, hud));
 
 		new Window(WIDTH, HEIGHT, "JavaGame RPG", this);
-		
 
 	}
 
@@ -107,16 +106,16 @@ public class Game extends Canvas implements Runnable {
 			break;
 		case Help:
 			this.addMouseListener(help);
-		break;
+			break;
 		case End:
 			break;
-			
+
 		case World:
 			world.tick();
 			spawner.tick();
 
 			break;
-		
+
 		case PlayerMenu:
 			playerMenu.tick();
 			break;

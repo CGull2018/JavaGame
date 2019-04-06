@@ -5,16 +5,31 @@ import java.awt.Rectangle;
 public class Bullet extends GameObject {
 
 	private Handler handler;
+	private HUD hud;
 
+	public int damage = 20;
+	public int velTotal = 2;
 
-	public Bullet(float x, float y, ID id, Handler handler, int mx, int my) {
+	public Bullet(float x, float y, ID id, Handler handler, int mx, int my, HUD hud) {
 		super(x, y, id);
 		this.handler = handler;
+		this.hud = hud;
 
 
-		velX = (mx - x) / 10;
-		velY = (my - y) / 10;
-
+		if(hud.weaponState == HUD.weaponSTATE.Pistol) {
+		velX = ((mx - x) / 10) * velTotal;
+		velY = ((my - y) / 10) * velTotal;
+		}
+		if(hud.weaponState == HUD.weaponSTATE.Scatter) {
+		velX = ((mx - x) / 30) * velTotal;
+		velY = ((my - y) / 30 )* velTotal;
+		
+		}
+		if(hud.weaponState == HUD.weaponSTATE.Auto) {
+		velX = ((mx - x) / 20) * velTotal;
+		velY = ((my - y) / 20 )* velTotal;
+		
+		}
 	}
 
 	@Override
@@ -22,6 +37,7 @@ public class Bullet extends GameObject {
 
 		x += velX;
 		y += velY;
+		
 
 		collision();
 	}
@@ -36,8 +52,21 @@ public class Bullet extends GameObject {
 	@Override
 	public void render(Graphics g) {
 
-		g.setColor(Color.GREEN);
-		g.fillOval((int) x, (int) y, 8, 8);
+		
+		switch(hud.weaponState) {
+		case Pistol:
+			g.setColor(Color.GREEN);
+			g.fillOval((int) x, (int) y, 8, 8);
+			break;
+		case Scatter:
+			g.setColor(Color.CYAN);
+			g.fillOval((int) x, (int) y, 4, 4);
+			break;
+		case Auto:
+			g.setColor(Color.YELLOW);
+			g.fillOval((int)x, (int)y, 4, 8);
+			
+		}
 	}
 
 	@Override

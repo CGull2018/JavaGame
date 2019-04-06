@@ -6,7 +6,8 @@ public class Handler {
     
     LinkedList<GameObject> object = new LinkedList<GameObject>();
     
-    private boolean up = false, down = false, right = false, left = false, pause = false, resume = false;
+    // ws 1-4 are weapon slots 
+    private boolean up = false, down = false, right = false, left = false, pause = false, resume = false, ws1 = false, ws2 = false, ws3 = false, ws4 = false;
 
     //Player movement keys
     public boolean isUp() {
@@ -57,7 +58,39 @@ public class Handler {
 	public void setResume(boolean resume) {
 		this.resume = resume;
 	}
-    public void tick(){
+    public boolean isWs1() {
+		return ws1;
+	}
+
+	public void setWs1(boolean ws1) {
+		this.ws1 = ws1;
+	}
+
+	public boolean isWs2() {
+		return ws2;
+	}
+
+	public void setWs2(boolean ws2) {
+		this.ws2 = ws2;
+	}
+
+	public boolean isWs3() {
+		return ws3;
+	}
+
+	public void setWs3(boolean ws3) {
+		this.ws3 = ws3;
+	}
+
+	public boolean isWs4() {
+		return ws4;
+	}
+
+	public void setWs4(boolean ws4) {
+		this.ws4 = ws4;
+	}
+
+	public void tick(){
     	
     	
         for(int i = 0; i < object.size(); i++){
