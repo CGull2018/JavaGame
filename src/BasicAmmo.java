@@ -10,22 +10,18 @@ public class BasicAmmo extends GameObject {
 	public int ammoCount = r.nextInt(10);
 	
 	private Handler handler;
-	
-	public int basicDamage = 50;
+	private HUD hud;
+
 	
 	public BasicAmmo(float x, float y, ID id, Handler handler) {
 		super(x, y, id);
 		this.handler = handler;
-		
-	
-
 		
 	}
 
 
 	@Override
 	public void tick() {
-
 
 	}
 
@@ -34,7 +30,8 @@ public class BasicAmmo extends GameObject {
 	public void render(Graphics g) {
 		g.setColor(Color.red);
 		g.fillRect((int)x,(int) y, 16, 16);
-	}
+
+		}
 
 	@Override
 	public Rectangle getBounds() {

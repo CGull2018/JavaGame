@@ -28,7 +28,10 @@ public class KeyInput extends KeyAdapter {
 				if (key == KeyEvent.VK_D) {
 					handler.setRight(true);
 				}
-				// player pause 
+				if (key == KeyEvent.VK_SPACE) {
+					handler.setFire(true);
+				}
+				// player pause
 				if (key == KeyEvent.VK_P) {
 					handler.setPause(true);
 				}
@@ -36,28 +39,12 @@ public class KeyInput extends KeyAdapter {
 				if (key == KeyEvent.VK_0) {
 					handler.setResume(true);
 				}
-				// weapon slot 1
-				if(key == KeyEvent.VK_1) {
-					handler.setWs1(true);
-					System.out.println("Weapon Slot 1 equip");
+				if(key == KeyEvent.VK_UP) {
+					handler.setWeaponP(true);
+					
 				}
-				//weapon slot 2
-				if(key == KeyEvent.VK_2) {
-					handler.setWs2(true);
-					System.out.println("Weapon Slot 2 equip");
-
-				}
-				//weapon slot 3
-				if(key == KeyEvent.VK_3) {
-					handler.setWs3(true);
-					System.out.println("Weapon Slot 3 equip");
-
-				}
-				//weapon slot 4
-				if(key == KeyEvent.VK_4) {
-					handler.setWs4(true);
-					System.out.println("Weapon Slot 4 equip");
-
+				if(key == KeyEvent.VK_DOWN) {
+					handler.setWeaponM(true);
 				}
 
 			}
@@ -82,7 +69,11 @@ public class KeyInput extends KeyAdapter {
 				if (key == KeyEvent.VK_D) {
 					handler.setRight(false);
 				}
-				// player pause 
+				// Shooting
+				if (key == KeyEvent.VK_SPACE) {
+					handler.setFire(false);
+				}
+				// player pause
 				if (key == KeyEvent.VK_P) {
 					handler.setPause(false);
 				}
@@ -90,23 +81,12 @@ public class KeyInput extends KeyAdapter {
 				if (key == KeyEvent.VK_0) {
 					handler.setResume(false);
 				}
-				// weapon slot 1
-				if(key == KeyEvent.VK_1) {
-					handler.setWs1(false);
+				if(key == KeyEvent.VK_UP) {
+					handler.setWeaponP(false);
 				}
-				//weapon slot 2
-				if(key == KeyEvent.VK_2) {
-					handler.setWs2(false);
+				if(key == KeyEvent.VK_DOWN) {
+					handler.setWeaponM(false);
 				}
-				//weapon slot 3
-				if(key == KeyEvent.VK_3) {
-					handler.setWs3(false);
-				}
-				//weapon slot 4
-				if(key == KeyEvent.VK_4) {
-					handler.setWs4(false);
-				}
-				
 
 			}
 		}

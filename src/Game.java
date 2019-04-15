@@ -111,6 +111,7 @@ public class Game extends Canvas implements Runnable {
 			break;
 
 		case World:
+
 			world.tick();
 			spawner.tick();
 

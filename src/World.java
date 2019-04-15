@@ -32,9 +32,11 @@ public class World extends MouseAdapter {
 		int my = e.getY();
 
 
+
 	}
 
 	public void mouseReleased(MouseEvent e) {
+
 
 	}
 
@@ -51,6 +53,8 @@ public class World extends MouseAdapter {
 	public void tick() {
 
 		hud.tick();
+		
+
 	}
 
 	public void render(Graphics g) {
