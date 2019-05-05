@@ -10,6 +10,7 @@ public class Bullet extends GameObject {
 	private HUD hud;
 	private Player player;
 
+
 	// bullet direction
 	private double rad;
 	private double dx;
@@ -22,14 +23,15 @@ public class Bullet extends GameObject {
 	public int damage = 20;
 	public double scatter = (r.nextDouble() - rad) * -.5  ;
 
-	public Bullet(float x, float y, ID id, Handler handler, Player player) {
+	public Bullet(float x, float y, ID id, Handler handler, Player player, int mx, int my) {
 		super(x, y, id);
 		this.handler = handler;
 		this.player = player;
 
+
 		rad = Math.toRadians(player.direction);
-		dx = Math.cos(rad);
-		dy = Math.sin(rad);
+		dx = 0;
+		dy = 0;
 		
 		
 	}

@@ -2,6 +2,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseMotionAdapter;
 import java.util.Random;
 
 public class Player extends GameObject {
@@ -9,6 +11,7 @@ public class Player extends GameObject {
 	Random r = new Random();
 	Handler handler;
 	HUD hud;
+	MouseInput mouseInput;
 
 	// weapon init
 	// weapon damages
@@ -32,6 +35,8 @@ public class Player extends GameObject {
 
 	public int speed;
 	public int direction;
+	public int mouseX;
+	public int mouseY;
 
 	private boolean isFire;
 	private long firingTimer;
@@ -46,13 +51,16 @@ public class Player extends GameObject {
 
 	public int weaponSlot = 0;
 
-	public Player(int x, int y, ID id, Handler handler, Game game, HUD hud) {
+	public Player(int x, int y, ID id, Handler handler, Game game, HUD hud, MouseInput mouseInput) {
 		super(x, y, id);
 		this.handler = handler;
 		this.game = game;
 		this.hud = hud;
+		this.mouseInput = mouseInput;
+
 
 		speed = 5;
+
 
 		// Weapon Delay
 		isFire = false;
@@ -66,6 +74,11 @@ public class Player extends GameObject {
 
 	public void tick() {
 
+		mouseX = mouseInput.mx;
+		mouseY = mouseInput.my;
+		
+		System.out.print("MOuseX: " + mouseX);
+		
 		// menu states
 		if (HUD.HEALTH <= 0) {
 			handler.removeObject(this);
@@ -94,6 +107,7 @@ public class Player extends GameObject {
 			if (handler.isUp() == true) {
 				velY = -speed;
 				direction = 270;
+				
 			} else if (!handler.isDown()) {
 				velY = 0;
 			}
@@ -145,10 +159,13 @@ public class Player extends GameObject {
 
 				weaponState = weaponSTATE.Pistol;
 				System.out.println("Weapon State ws 2");
+				
+
+				
 				if (handler.isFire() == true) {
 					long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 					if (elapsed > firingDelay) {
-						handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this));
+						handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this, mouseX, mouseY));
 						firingTimer = System.nanoTime();
 					}
 
@@ -163,7 +180,7 @@ public class Player extends GameObject {
 					long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 					if (elapsed > firingDelay) {
 						for (int s = 0; s < 3; s++) {
-							handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this));
+							handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this, mouseX, mouseY));
 
 						}
 						firingTimer = System.nanoTime();
@@ -179,7 +196,7 @@ public class Player extends GameObject {
 					long elapsed = (System.nanoTime() - firingTimer) / 1000000;
 					if (elapsed > firingDelay) {
 
-						handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this));
+						handler.addObject(new Bullet(x + 16, y - 16, ID.Bullet, handler, this, mouseX, mouseY));
 						firingTimer = System.nanoTime();
 
 					}

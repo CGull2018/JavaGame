@@ -41,7 +41,8 @@ public class Game extends Canvas implements Runnable {
 		spawner = new Spawner(handler, this, hud);
 
 		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new MouseInput(handler, hud));
+		this.addMouseMotionListener(new MouseInput(handler, hud));
+		
 
 		new Window(WIDTH, HEIGHT, "JavaGame RPG", this);
 

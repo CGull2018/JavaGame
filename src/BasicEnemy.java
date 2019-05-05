@@ -13,8 +13,9 @@ public class BasicEnemy extends GameObject {
 	Random r = new Random();
 
 	// basic stats
-	public int enemyHealth = 100;
-	public int ammoDrop = r.nextInt(10);
+	public int enemyHealth;
+	public double enemyBasicSpeed;
+	public int ammoDrop;
 
 	public int roamX = 0;
 	public int roamY = 0;
@@ -40,6 +41,11 @@ public class BasicEnemy extends GameObject {
 		super(x, y, id);
 		this.handler = handler;
 		this.game = game;
+		
+		enemyHealth = 100;
+		enemyBasicSpeed = 1.25;
+		
+		ammoDrop = r.nextInt(10);
 
 
 		for (int i = 0; i < handler.object.size(); i++) {
@@ -91,8 +97,8 @@ public class BasicEnemy extends GameObject {
 						x += velX;
 						y += velY;
 
-						velX = (float) ((-1.0 / distance) * diffX * 2);
-						velY = (float) ((-1.0 / distance) * diffY * 2);
+						velX = (float) ((-1.0 / distance) * diffX * enemyBasicSpeed);
+						velY = (float) ((-1.0 / distance) * diffY * enemyBasicSpeed);
 
 						break;
 					case Chase:
@@ -100,8 +106,8 @@ public class BasicEnemy extends GameObject {
 						x += velX;
 						y += velY;
 
-						velX = (float) ((-1.0 / distance) * diffX * 3);
-						velY = (float) ((-1.0 / distance) * diffY * 3);
+						velX = (float) ((-1.0 / distance) * diffX * enemyBasicSpeed);
+						velY = (float) ((-1.0 / distance) * diffY * enemyBasicSpeed);
 						break;
 
 					}
